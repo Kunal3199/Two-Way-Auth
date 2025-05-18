@@ -1,0 +1,30 @@
+.Auth-container {
+  text-align: center;
+  margin: "10 px";
+  font-family: sans-serif;
+  font-weight: bold;
+
+}
+
+input:focus {
+  outline: 2px solid blue;
+
+}
+
+.unordered-list {
+  width: 100vw;
+  height: 35px;
+  background-color: aquamarine;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0px
+}
+
+.list-item {
+  padding: '10px';
+  color: blueviolet;
+  list-style: none;
+  text-decoration: none;
+}
