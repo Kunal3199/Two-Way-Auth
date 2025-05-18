@@ -13,7 +13,7 @@ const Todo = () => {
   const [title, setTitle] = useState("");
   const [Todos, setTodo] = useState([]);
   const [dragObj, setDragObj] = useState({});
-
+  const [editValue, setEditValue] = useState("");
   const handleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -59,13 +59,28 @@ const Todo = () => {
     const todoCopy = Todos.filter((todo) => todo.id !== TodoObj.id);
     setTodo([...todoCopy]);
   };
-  // const handleEditTodo = (e, TodoObj) => {
-  //   const todoCopy = Todos.filter((todo) => todo.id !== TodoObj.id);
-  //   setTodo([...todoCopy]);
-  // };
+  const handleEditTodo = (e, TodoObj, newValue) => {
+    console.log("wwwwww", TodoObj);
+    if (e.keyCode === 13) {
+      const todoCopy = Todos.filter((todo) => todo.id !== TodoObj.id);
+      setTodo([
+        ...todoCopy,
+        {
+          title: editValue,
+          id: Date.now(),
+          status: TodoObj.status,
+        },
+      ]);
+      setEditValue("");
+    }
+  };
 
   return (
     <div>
+      <div style={{ textAlign: "center" }}>
+        <h2 style={{ marginBottom: "0px" }}>Draggable Todo's List</h2>
+        <p style={{ marginTop: "2px" }}>For Edit Please click on Todo's Name</p>
+      </div>
       <div style={{ display: "flex", "justify-content": "space-around" }}>
         <input
           type="text"
@@ -81,6 +96,7 @@ const Todo = () => {
           onKeyDown={(e) => handleAddTodo(e)}
         />
       </div>
+
       <div style={{ display: "flex", width: "100%" }}>
         <div
           style={{
@@ -120,7 +136,20 @@ const Todo = () => {
                     // onDragOver={(e) => handleDragDone(e, DOING, Todoi)}
                     // onDrop={(e) => console.log(",,,,,,,,,,")}
                   >
-                    <h5>{Todoi.title}</h5>
+                    <input
+                      // value={Todoi.title}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: "15px",
+                        width: "70%",
+                      }}
+                      defaultValue={Todoi.title}
+                      onChange={(e) => {
+                        setEditValue(e.target.value);
+                      }}
+                      onKeyDown={(e) => handleEditTodo(e, Todoi, editValue)}
+                    />
                     <div>
                       <button onClick={(e) => handleDeleteTodo(e, Todoi)}>
                         &#xf2ed; delete
@@ -167,7 +196,20 @@ const Todo = () => {
                       setDragObj(Todoi);
                     }}
                   >
-                    <h5>{Todoi.title}</h5>
+                    <input
+                      // value={Todoi.title}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: "15px",
+                        width: "70%",
+                      }}
+                      defaultValue={Todoi.title}
+                      onChange={(e) => {
+                        setEditValue(e.target.value);
+                      }}
+                      onKeyDown={(e) => handleEditTodo(e, Todoi, editValue)}
+                    />
                     <div>
                       <button onClick={(e) => handleDeleteTodo(e, Todoi)}>
                         &#xf2ed; delete
@@ -214,7 +256,20 @@ const Todo = () => {
                       setDragObj(Todoi);
                     }}
                   >
-                    <h5>{Todoi.title}</h5>
+                    <input
+                      // value={Todoi.title}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        padding: "15px",
+                        width: "70%",
+                      }}
+                      defaultValue={Todoi.title}
+                      onChange={(e) => {
+                        setEditValue(e.target.value);
+                      }}
+                      onKeyDown={(e) => handleEditTodo(e, Todoi, editValue)}
+                    />
                     <div>
                       <button onClick={(e) => handleDeleteTodo(e, Todoi)}>
                         &#xf2ed; delete
